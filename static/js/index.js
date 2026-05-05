@@ -123,24 +123,21 @@ $(document).ready(function() {
     // Check for click events on the navbar burger icon
 
     var options = {
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		loop: true,
-		infinite: true,
-		autoplay: false,
-		autoplaySpeed: 5000,
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnHover: true,
+        navigation: true,
+        pagination: true,
+        navigationSwipe: true,
+        navigationKeys: true,
     }
 
 	// Initialize all div with carousel class
     var carousels = bulmaCarousel.attach('.carousel', options);
-
-    if (Array.isArray(carousels)) {
-        carousels.forEach(function(carousel) {
-            if (carousel && typeof carousel.stop === 'function') {
-                carousel.stop();
-            }
-        });
-    }
 
     // Setup video autoplay for carousel
     setupVideoCarouselAutoplay();
