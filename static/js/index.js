@@ -143,3 +143,131 @@ $(document).ready(function() {
     setupVideoCarouselAutoplay();
 
 })
+
+// r1-style video marquees and synchronized comparison playback
+function streamSafePlay(video) {
+    if (!video) return;
+    const promise = video.play();
+    if (promise && typeof promise.catch === 'function') {
+        promise.catch(function() {});
+    }
+}
+
+function setupStreamVideoPlayback() {
+    const videos = document.querySelectorAll('.stream-marquee-video video, .stream-method-cell video, .stream-compare-cell video');
+    if (videos.length === 0) return;
+
+    videos.forEach(function(video, index) {
+        video.addEventListener('loadedmetadata', function() {
+            if (Number.isFinite(video.duration) && video.duration > 1) {
+                try {
+                    video.currentTime = (index * 0.47) % Math.min(video.duration, 8);
+                } catch (e) {}
+            }
+        }, { once: true });
+    });
+
+    if (!('IntersectionObserver' in window)) {
+        videos.forEach(streamSafePlay);
+        return;
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                if (video.preload === 'metadata') video.preload = 'auto';
+                streamSafePlay(video);
+            } else {
+                video.pause();
+            }
+        });
+    }, {
+        threshold: 0.18,
+        rootMargin: '120px 0px 120px 0px'
+    });
+
+    videos.forEach(function(video) {
+        observer.observe(video);
+    });
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            videos.forEach(function(video) {
+                video.pause();
+            });
+        }
+    });
+}
+
+function setupStreamFullscreen() {
+    const targets = document.querySelectorAll('[data-stream-fullscreen]');
+    if (targets.length === 0) return;
+
+    function requestFullscreen(element) {
+        const request = element.requestFullscreen ||
+            element.webkitRequestFullscreen ||
+            element.webkitEnterFullscreen ||
+            element.msRequestFullscreen ||
+            element.mozRequestFullScreen;
+        if (!request) return;
+        try {
+            const result = request.call(element);
+            if (result && typeof result.catch === 'function') result.catch(function() {});
+        } catch (e) {}
+    }
+
+    targets.forEach(function(target) {
+        target.addEventListener('click', function(event) {
+            event.preventDefault();
+            const video = target.querySelector('video');
+            if (!video) return;
+            try {
+                video.currentTime = 0;
+            } catch (e) {}
+            video.muted = true;
+            video.playsInline = true;
+            requestFullscreen(video);
+            requestFullscreen(target);
+            streamSafePlay(video);
+        });
+    });
+}
+
+function setupStreamComparison() {
+    const rows = document.querySelectorAll('.stream-compare-row');
+    if (rows.length === 0 || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            const row = entry.target;
+            const videos = row.querySelectorAll('video');
+            if (entry.isIntersecting) {
+                row.classList.add('is-active');
+                videos.forEach(function(video) {
+                    try {
+                        video.currentTime = 0;
+                    } catch (e) {}
+                    streamSafePlay(video);
+                });
+            } else {
+                row.classList.remove('is-active');
+                videos.forEach(function(video) {
+                    video.pause();
+                });
+            }
+        });
+    }, {
+        threshold: 0.45
+    });
+
+    rows.forEach(function(row) {
+        observer.observe(row);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setupStreamVideoPlayback();
+    setupStreamFullscreen();
+    setupStreamComparison();
+});
