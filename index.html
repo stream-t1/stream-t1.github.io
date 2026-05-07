@@ -1,463 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Stream-T1 — Test-Time Scaling for Streaming Video Generation
+    </title>
+    <meta
+      name="description"
+      content="Stream-T1 Test-Time Scaling for Streaming Video Generation."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff8a3d'/%3E%3Cstop offset='0.6' stop-color='%23d83a8c'/%3E%3Cstop offset='1' stop-color='%236a4cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23faf9f4'/%3E%3Ccircle cx='32' cy='32' r='10' fill='url(%23g)'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="reading-progress" data-reading-progress aria-hidden="true"></div>
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>Stream-T1</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/img/tree.png">
-  <link rel="apple-touch-icon" href="static/img/tree.png">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/img/tree.png",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
-</head>
-<body>
-
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/2505.02192" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>DualReal:Adaptive Joint Training for Lossless Identity-Motion Fusion in Video Customization</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>A novel framework that employs adaptive joint training to construct interdependencies between identity and motion dimensions collaboratively.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">ICCV2025</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <div class="container nav-inner">
+        <a class="nav-brand" href="#top" aria-label="Stream-T1 homepage">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Stream-T1</span>
         </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <!-- <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a> -->
-      </div>
-    </div>
-  </div>
-
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Stream-T1: Test-Time Scaling for Streaming Video Generation</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="mailto:tuyijing@mail.ustc.edu.cn" target="_blank">Yijing Tu</a><sup>1</sup>,</span>
-                <span class="author-block">
-                  <a href="https://scholar.google.com/citations?user=9ER6nVkAAAAJ&hl=en" target="_blank">Shaojin Wu</a><sup>2</sup><sup>&#8224;</sup>,</span>
-                  <span class="author-block">
-                    <a href="https://corleone-huang.github.io/" target="_blank">Mengqi Huang</a><sup>1</sup><sup>&#8224;</sup>,
-                  </span>
-                  <span class="author-block">
-                    <a href="mailto:wenc_k@ustc.edu.cn" target="_blank">Wenchuan Wang</a><sup>1</sup>,
-                  </span>
-                  <span class="author-block">
-                    <a href="https://scholar.google.com.hk/citations?user=aBe1jXgAAAAJ&hl=zh-CN&oi=ao" target="_blank">Yuxin Wang</a><sup>3</sup>,
-                  </span>
-                  <span class="author-block">
-                    <a href="https://scholar.google.com.hk/citations?user=qso2iREAAAAJ&hl=zh-CN&oi=sra" target="_blank">Chunxiao Liu</a><sup>2</sup>,
-                  </span>
-                  <span class="author-block">
-                    <a href="https://scholar.google.com/citations?hl=en&user=m-0P8sgAAAAJ" target="_blank">Zhendong Mao</a><sup>1</sup><sup>*</sup>
-                  </span>
-                  </div>
-
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block"><sup>1</sup>University of Science and Technology of China, <sup>2</sup>Independent Researcher, <sup>3</sup>FrameX.AI<br><sup>*</sup>Corresponding author, <sup>&#8224;</sup>Project Lead</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <!-- <span class="eql-cntrb"><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <!-- <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span> -->
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <!-- <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span> -->
-                  <!-- TODO: Update with your arXiv paper ID -->
-                    <span class="link-block">
-                      <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="ai ai-arxiv"></i>
-                      </span>
-                      <span>arXiv</span>
-                    </a>
-                  </span>
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/FrameX-AI/Stream-T1" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-            </div>
-          </div>
+        <div class="nav-links">
+          <a href="#abstract">Abstract</a>
+          <a href="#method">Method</a>
+          <a href="#duration">Video</a>
+          <a href="#compare">Comparison</a>
+          <a href="#visualization">Search</a>
+          <a href="#results">Results</a>
+          <a href="#ablation">Ablation</a>
+          <a href="#citation">Cite</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </nav>
 
-<!-- Hero video marquee -->
-<section class="stream-hero-marquee" aria-label="Stream-T1 generated video highlights">
-  <div class="stream-marquee-track">
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 01">
-      <video src="static/video/5s/1.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 01</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 02">
-      <video src="static/video/5s/2.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 02</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 03">
-      <video src="static/video/5s/3.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 03</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 04">
-      <video src="static/video/5s/4.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 04</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 05">
-      <video src="static/video/5s/5.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 05</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s highlight clip 06">
-      <video src="static/video/5s/6.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 06</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 01">
-      <video src="static/video/30s/1.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 01</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 02">
-      <video src="static/video/30s/2.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 02</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 03">
-      <video src="static/video/30s/3.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 03</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 04">
-      <video src="static/video/30s/4.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 04</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 05">
-      <video src="static/video/30s/5.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 05</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s highlight clip 06">
-      <video src="static/video/30s/6.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 06</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/1.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 01</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/2.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 02</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/3.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 03</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/4.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 04</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/5.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 05</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/5s/6.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">5s · 06</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/1.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 01</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/2.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 02</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/3.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 03</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/4.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 04</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/5.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 05</span>
-    </button>
-    <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1">
-      <video src="static/video/30s/6.mp4" loop muted playsinline preload="metadata"></video>
-      <span class="stream-marquee-tag">30s · 06</span>
-    </button>
-  </div>
-  <p class="stream-marquee-hint">Hover to pause · click any clip to play fullscreen</p>
-</section>
+    <header class="hero" id="top">
+      <div class="hero-canvas" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-watermark" aria-hidden="true">STREAM&bull;T1</div>
 
-
-<!-- Teaser video-->
-<!-- <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      TODO: Replace with your teaser video
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        TODO: Add your video file path here -->
-        <!-- <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video> -->
-      <!-- TODO: Replace with your video description -->
-      <!-- <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section> --> 
-<!-- End teaser video -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            While Test-Time Scaling (TTS) offers a promising direction to enhance video generation without the surging costs of training, current test-time video generation methods based on diffusion models suffer from exorbitant candidate exploration costs and lack temporal guidance. To address these structural bottlenecks, we propose shifting the focus to streaming video generation. We identify that its chunk-level synthesis and few denoising steps are intrinsically suited for TTS, significantly lowering computational overhead while enabling fine-grained temporal control. Driven by this insight, we introduced Stream-T1, a pioneering comprehensive TTS framework exclusively tailored for streaming video generation. Evaluated on both 5s and 30s comprehensive video benchmarks, Stream-T1 demonstrates profound superiority, significantly improving temporal consistency, motion smoothness, and frame-level visual quality.
-          </p>
+      <div class="container hero-inner">
+        <div class="eyebrow">
+          <span class="dot"></span>
+          <span>Streaming Video Generation · USTC · FrameX.AI</span>
         </div>
-        <div class="stream-pillars">
+
+        <h1 class="title">
+          <span class="title-mark">Stream-T1</span>
+          <span class="title-line">Test-Time Scaling for Streaming Video Generation</span>
+        </h1>
+
+        <div class="authors">
+          <div class="authors-line">
+            <span class="author"><strong>Yijing Tu</strong><sup>1</sup></span>
+            <span class="author"
+              ><a class="author-link" href="https://scholar.google.com/citations?user=9ER6nVkAAAAJ&hl=en" target="_blank" rel="noopener"><strong>Shaojin Wu</strong></a><sup>3<span class="author-mark">&#8225;</span></sup></span
+            >
+            <span class="author"
+              ><a class="author-link" href="https://corleone-huang.github.io/" target="_blank" rel="noopener"><strong>Mengqi Huang</strong></a><sup>1<span class="author-mark">&#8225;</span></sup></span
+            >
+            <span class="author"><strong>Wenchuan Wang</strong><sup>1</sup></span>
+            <span class="author"
+              ><a class="author-link" href="https://scholar.google.com.hk/citations?user=aBe1jXgAAAAJ&hl=zh-CN&oi=ao" target="_blank" rel="noopener"><strong>Yuxin Wang</strong></a><sup>2</sup></span
+            >
+            <span class="author"
+              ><a class="author-link" href="https://scholar.google.com.hk/citations?user=qso2iREAAAAJ&hl=zh-CN&oi=sra" target="_blank" rel="noopener"><strong>Chunxiao Liu</strong></a><sup>3</sup></span
+            >
+            <span class="author"
+              ><a class="author-link" href="https://scholar.google.com/citations?hl=en&user=m-0P8sgAAAAJ" target="_blank" rel="noopener"><strong>Zhendong Mao</strong></a><sup>1<span class="author-mark">&#8224;</span></sup></span
+            >
+          </div>
+          <div class="affiliations">
+            <span><sup>1</sup> University of Science and Technology of China</span>
+            <span><sup>2</sup> FrameX.AI</span>
+            <span><sup>3</sup> Independent Researcher</span>
+          </div>
+          <div class="author-notes">
+            <span><sup>&#8224;</sup> Corresponding author</span>
+            <span><sup>&#8225;</sup> Project lead</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-secondary" href="https://arxiv.org/pdf/2605.04461" target="_blank" rel="noopener" data-link="arxiv">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M3 5h18M3 12h18M3 19h18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.7" />
+            </svg>
+            arXiv
+          </a>
+          <a class="btn btn-secondary" href="https://github.com/FrameX-AI/Stream-T1" target="_blank" rel="noopener" data-link="code">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+              <path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.55 9.55 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z" fill="currentColor" />
+            </svg>
+            Code
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero marquee: 8 cases × 10s, scrolling continuously -->
+      <div class="hero-marquee" data-marquee>
+        <div class="marquee-track">
+          <!-- Pass 1 -->
+          <button class="marquee-video" data-fullscreen aria-label="Case 01"><video src="video/5s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+          <button class="marquee-video" data-fullscreen aria-label="Case 02"><video src="video/5s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+          <button class="marquee-video" data-fullscreen aria-label="Case 03"><video src="video/5s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+          <button class="marquee-video" data-fullscreen aria-label="Case 04"><video src="video/5s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+          <button class="marquee-video" data-fullscreen aria-label="Case 05"><video src="video/5s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+          <button class="marquee-video" data-fullscreen aria-label="Case 06"><video src="video/5s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
+          <!-- Pass 2 (duplicate, aria-hidden for screen readers) -->
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+          <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
+        </div>
+        <p class="marquee-hint">Hover any clip to pause &middot; click to play fullscreen</p>
+      </div>
+    </header>
+
+    <section class="section section-light" id="abstract">
+      <div class="container narrow">
+        <p class="section-eyebrow">Abstract</p>
+        <p class="lead">
+          <!-- Stream-R1 reweights distribution-matching distillation along two
+          complementary axes &mdash; <em>Inter-Reliability</em> across rollouts
+          and <em>Intra-Perplexity</em> across spatiotemporal regions &mdash;
+          using a single shared video reward model. -->
+          Combined with candidate selection, <em>Stream-T1</em> actively optimizes the generation trajectory by dynamically refining both the latent noise and the context memory.
+        </p>
+        <p class="abstract-body">
+          While Test-Time Scaling (TTS) offers a promising direction to enhance video generation without the surging costs of training, current test-time video generation methods based on diffusion models suffer from exorbitant candidate exploration costs and lack temporal guidance. To address these structural bottlenecks, we propose shifting the focus to streaming video generation. We identify that its chunk-level synthesis and few denoising steps are intrinsically suited for TTS, significantly lowering computational overhead while enabling fine-grained temporal control. Driven by this insight, we introduced Stream-T1, a pioneering comprehensive TTS framework exclusively tailored for streaming video generation. Evaluated on both 5s and 30s comprehensive video benchmarks, Stream-T1 demonstrates profound superiority, significantly improving temporal consistency, motion smoothness, and frame-level visual quality.
+        </p>
+
+        <div class="pillars reveal">
           <article>
             <span class="stream-pillar-num">01</span>
             <h3>Stream‑Scaled Noise Propagation</h3>
@@ -475,283 +161,345 @@
           </article>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
+    </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <div class="content-block">
-          <h2 class="title is-3 has-text-centered">How does it work?</h2>
-          <div class="has-text-centered">
-            <img src="./static/img/pipeline.png" 
-            alt="Sream-T1 Pipeline"
-            style="width: 100%; 
-                    height: auto;
-                    border-radius: 4px;">
+
+    <section class="section section-light" id="method">
+      <div class="container reveal">
+        <p class="section-eyebrow">Method</p>
+        <h2 class="section-title">Three sequential stages</h2>
+        <p class="section-copy">
+          For each chunk, Stream-T1 performs optimization in the following order: pre-generation, post-generation, and post-pruning.
+        </p>
+        <figure class="figure-panel figure-wide">
+          <img src="img/pipeline.png" alt="Stream-T1 method overview" loading="lazy" />
+          <figcaption>
+            <strong>Figure 1.</strong> Overview of the Stream-T1 chunk-level scaling pipeline. 
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ====== Long Video — 4-row scrolling marquee ====== -->
+    <section class="section section-feature" id="duration">
+      <div class="container">
+        <p class="section-eyebrow">Video Generation</p>
+        <h2 class="section-title">High coherence and high-fidelity</h2>
+        <p class="section-copy">
+          Each row plays clips that were independently rolled out at a different
+          duration &mdash; <strong>5 seconds</strong>, <strong>30 seconds</strong>,
+          Hover a row to pause its scroll and zoom the clip under your cursor; click any clip to play it fullscreen.
+        </p>
+      </div>
+
+      <div class="duration-marquees">
+        <div class="duration-row" data-marquee data-direction="left">
+          <div class="duration-display"><div class="duration-display-bg" aria-hidden="true"></div><div class="duration-display-text"><span class="duration-display-num">5</span><span class="duration-display-unit">seconds</span></div></div>
+          <div class="marquee-track">
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 01"><video src="video/5s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 02"><video src="video/5s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 03"><video src="video/5s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 04"><video src="video/5s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 05"><video src="video/5s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="5s · Case 06"><video src="video/5s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/5s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
           </div>
-          <div class="content mt-4">
-            <p> 
-                <b>Overview of the Stream-T1 chunk-level scaling pipeline:</b> For each chunk, our test-time scaling mechanism operates in three sequential stages: (1)Stream-Scaled Noise Propagation, where the initial noise latents for the current chunk are actively sampled, conditioned on the optimal noise trajectories retained from the previous chunk. (2)Stream-Scaled Reward Pruning, where fully generated chunk candidates are holistically evaluated via a Long-Short Combined Reward to balance local spatial aesthetics with global temporal coherence. Based on this feedback, suboptimal branches are pruned to propagate only the optimal generation trajectories.(3)Stream‑Scaled Memory Sinking, where the memory sink is adaptively updated based on reward scores to preserve long-term semantics and guide the subsequent video generation.
-            </p>
+        </div>
+
+        <div class="duration-row" data-marquee data-direction="right">
+          <div class="duration-display"><div class="duration-display-bg" aria-hidden="true"></div><div class="duration-display-text"><span class="duration-display-num">30</span><span class="duration-display-unit">seconds</span></div></div>
+          <div class="marquee-track">
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 01"><video src="video/30s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 02"><video src="video/30s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 03"><video src="video/30s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 04"><video src="video/30s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 05"><video src="video/30s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+            <button class="marquee-video" data-fullscreen aria-label="30s · Case 06"><video src="video/30s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/1.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">01</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/2.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">02</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/3.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">03</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/4.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">04</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/5.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">05</span></button>
+            <button class="marquee-video" data-fullscreen aria-hidden="true" tabindex="-1"><video src="video/30s/6.mp4" loop muted playsinline preload="metadata"></video><span class="marquee-tag">06</span></button>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <div class="content-block">
-          <h2 class="title is-3 has-text-centered">Comparison Results</h2>
-          <div class="stream-method-table" aria-label="Qualitative comparison across methods">
-            <div class="stream-method-header">
-              <span>CausVid</span>
-              <span>Self-Forcing</span>
-              <span>LongLive</span>
-              <span>Ours</span>
+    <section class="section" id="compare">
+      <div class="container reveal">
+        <p class="section-eyebrow">Method Comparison</p>
+        <h2 class="section-title"><em>LongLive</em> vs. Stream-T1</h2>
+        <p class="section-copy">
+          Same prompt, same seed. Stream-T1 significantly elevates the temporal consistency and frame-level visual fidelity of the generated videos.
+        </p>
+
+        <div class="compare-grid">
+          <div class="compare-header">
+            <span>LongLive</span>
+            <span>Stream-T1 <em>(ours)</em></span>
+          </div>
+          <div class="compare-row" data-compare="0033_seed0">
+            <div class="compare-cell">
+              <video src="video/longlive/3.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-baseline">Baseline</span>
             </div>
-            <div class="stream-method-row">
-              <div class="stream-method-cell"><video src="static/video/causvid/1.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/self_forcing/1.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/longlive/1.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell is-ours"><video src="static/video/ours/1.mp4" loop muted playsinline preload="metadata"></video></div>
-            </div>
-            <div class="stream-method-row">
-              <div class="stream-method-cell"><video src="static/video/causvid/2.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/self_forcing/2.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/longlive/2.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell is-ours"><video src="static/video/ours/2.mp4" loop muted playsinline preload="metadata"></video></div>
-            </div>
-            <div class="stream-method-row">
-              <div class="stream-method-cell"><video src="static/video/causvid/3.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/self_forcing/3.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell"><video src="static/video/longlive/3.mp4" loop muted playsinline preload="metadata"></video></div>
-              <div class="stream-method-cell is-ours"><video src="static/video/ours/3.mp4" loop muted playsinline preload="metadata"></video></div>
+            <div class="compare-cell">
+              <video src="video/ours/3.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-ours">Ours</span>
             </div>
           </div>
-          <div class="content mt-4">
-            <p> 
-                <b>Qualitative comparisons of Stream-T1 with Causvid, Self-Forcing, and LongLive.</b> Stream-T1 significantly elevates the temporal consistency and frame-level visual fidelity of the generated videos.  
-            </p>
+          <div class="compare-row" data-compare="0038_seed0">
+            <div class="compare-cell">
+              <video src="video/longlive/2.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-baseline">Baseline</span>
+            </div>
+            <div class="compare-cell">
+              <video src="video/ours/2.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-ours">Ours</span>
+            </div>
+          </div>
+          <div class="compare-row" data-compare="0039_seed0">
+            <div class="compare-cell">
+              <video src="video/longlive/1.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-baseline">Baseline</span>
+            </div>
+            <div class="compare-cell">
+              <video src="video/ours/1.mp4" loop muted playsinline preload="metadata"></video>
+              <span class="compare-tag tag-ours">Ours</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Image carousel -->
-<!-- <section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item"> -->
-        <!-- TODO: Replace with your research result images -->
-        <!-- <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/> -->
-        <!-- TODO: Replace with description of this result -->
-        <!-- <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
+    <section class="section section-light" id="method">
+      <div class="container reveal">
+        <p class="section-eyebrow">Full search visualization</p>
+        <h2 class="section-title">How to prune</h2>
+        <figure class="figure-panel figure-wide">
+          <img src="img/search.png" alt="Stream-T1 search overview" loading="lazy" />
+          <figcaption>
+            <strong>Figure 2.</strong> The complete search path of the case in the Figure 1. 
+          </figcaption>
+        </figure>
       </div>
-      <div class="item"> -->
-        <!-- Your image here -->
-        <!-- <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item"> -->
-        <!-- Your image here -->
-        <!-- <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item"> -->
-      <!-- Your image here -->
-      <!-- <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section> -->
-<!-- End image carousel -->
+    </section>
 
+    <section class="section" id="results">
+      <div class="container reveal">
+        <p class="section-eyebrow">Quantitative Results</p>
+        <h2 class="section-title">5s and 30s evaluation</h2>
+        <p class="section-copy">
+          To comprehensively evaluate the effectiveness of our proposed Stream-T1, we compare against three representative open-source models on both 5s and 30s video generation. Overall, extensive experimental analyses demonstrate that Stream-T1 significantly and comprehensively elevates the temporal consistency, motion coherence, and frame-level visual fidelity of the generated videos.
+        </p>
 
-
-
-<!-- Youtube video -->
-<!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container"> -->
-      <!-- Paper video. -->
-      <!-- <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video"> -->
-            <!-- TODO: Replace with your YouTube video ID -->
-            <!-- <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- End youtube video -->
-
-
-<!-- More video results -->
-<section class="section stream-duration-section">
-  <div class="container">
-    <div class="stream-section-head">
-      <p class="stream-eyebrow">More Results</p>
-      <h2 class="title is-3 has-text-centered">5s and 30s video generation</h2>
-      <p>
-        Each row plays Stream-T1 clips at a different rollout duration —
-        <strong>5 seconds</strong> and <strong>30 seconds</strong>. Hover a row to pause its scroll;
-        click any clip to play it fullscreen.
-      </p>
-    </div>
-  </div>
-
-  <div class="stream-duration-marquees">
-    <div class="stream-duration-row" data-stream-row data-direction="left">
-      <div class="stream-duration-display"><span>5</span><em>seconds</em></div>
-      <div class="stream-marquee-track">
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 01"><video src="static/video/5s/1.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">01</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 02"><video src="static/video/5s/2.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">02</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 03"><video src="static/video/5s/3.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">03</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 04"><video src="static/video/5s/4.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">04</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 05"><video src="static/video/5s/5.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">05</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="5s clip 06"><video src="static/video/5s/6.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">06</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/1.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">01</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/2.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">02</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/3.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">03</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/4.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">04</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/5.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">05</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/5s/6.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">06</span></button>
-      </div>
-    </div>
-
-    <div class="stream-duration-row" data-stream-row data-direction="right">
-      <div class="stream-duration-display"><span>30</span><em>seconds</em></div>
-      <div class="stream-marquee-track">
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 01"><video src="static/video/30s/1.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">01</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 02"><video src="static/video/30s/2.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">02</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 03"><video src="static/video/30s/3.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">03</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 04"><video src="static/video/30s/4.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">04</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 05"><video src="static/video/30s/5.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">05</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-label="30s clip 06"><video src="static/video/30s/6.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">06</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/1.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">01</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/2.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">02</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/3.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">03</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/4.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">04</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/5.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">05</span></button>
-        <button class="stream-marquee-video" data-stream-fullscreen aria-hidden="true" tabindex="-1"><video src="static/video/30s/6.mp4" loop muted playsinline preload="metadata"></video><span class="stream-marquee-tag">06</span></button>
-      </div>
-    </div>
-
-  </div>
-</section>
-<!-- End more video results -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<!-- <section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      TODO: Replace with your poster PDF
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section> -->
-<!--End paper poster -->
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full">
-        <div class="content-block">
-          <h2 class="title is-3 has-text-centered">Ablation Results</h2>
-          <div class="has-text-centered">
-            <img src="./static/img/ablation_results.png" 
-            alt="ablation results"
-            style="width: 100%; 
-                    height: auto;
-                    border-radius: 4px;">
-          </div>
-          <div class="content mt-4">
-            <p> 
-                <b>Qualitative ablations studies on each component.</b> Omitting the Stream-Scaled Memory Sinking degrades background stability. Removing the Stream-Scaled Noise Propagation introduces local structural artifacts (e.g., on the subject's tail). Eliminating the Stream-Scaled Reward Pruning leads to distinct semantic misalignment and deteriorated aesthetic quality.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>
-</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+        <div class="result-block">
+          <h3 class="result-title">VBench and Videoalign&mdash; 5-second video, 832&times;480</h3>
+          <p class="result-caption">
+            Stream-T1 records the best results on six quality metrics(Subject Consistency, Background Consistency, Motion Smoothness, Aesthetic Quality, MQ and TA) and ranks the second on Imaging Quality and VQ. 
           </p>
-
+          <div class="table-wrap">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="5">VBench&uarr;</th>
+                  <th colspan="3">VideoAlign&uarr;</th>
+                </tr>
+                <tr>
+                  <th>Subject<br />Consistency</th>
+                  <th>Background<br />Consistency</th>
+                  <th>Motion<br />Smoothness</th>
+                  <th>Imaging<br />Quality</th>
+                  <th>Aesthetic<br />Quality</th>
+                  <th>VQ</th>
+                  <th>MQ</th>
+                  <th>TA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><small>CausVid</small></td><td>96.33</td><td>95.56</td><td>98.66</td><td>69.69</td><td>62.90</td><td><strong>0.433</strong></td><td>0.550</td><td>1.02</td></tr>
+                <tr><td><small>Self-forcing</small></td><td>95.26</td><td>95.67</td><td>98.67</td><td><strong>71.61</strong></td><td>63.97</td><td>0.099</td><td>0.088</td><td>1.193</td></tr>
+                <tr><td><small>LongLive</small></td><td>97.00</td><td>96.78</td><td>99.12</td><td>71.28</td><td>65.28</td><td>0.285</td><td>0.350</td><td>1.193</td></tr>
+                <tr class="ours-row"><td><strong><em>Stream-T1 (on LongLive)</em></strong></td><td><strong>97.25</strong></td><td><strong>97.05</strong></td><td><strong>99.15</strong></td><td>71.42</td><td><strong>65.98</strong></td><td>0.426</td><td><strong>0.629</strong></td><td><strong>1.305</strong></td></tr>
+                <tr class="delta-row"><td><small>Relative gain</small></td><td>Δ0.26%</td><td>Δ0.28%</td><td>Δ0.03%</td><td>Δ0.20%</td><td>Δ1.07%</td><td>Δ49.47%</td><td>Δ79.71%</td><td>Δ9.39%</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        <div class="result-block">
+          <h3 class="result-title">VBench and Videoalign&mdash; 30-second video, 832&times;480</h3>
+          <p class="result-caption">
+            Stream-T1 outperforms state-of-the-art baselines across almost all metrics. Stream-T1 achieves the highest scores in Subject Consistency, Background Consistency, Motion Smoothness, Imaging Quality, and Aesthetic Quality. This superiority is further corroborated by the human-aligned VideoAlign, where our model obtains the best VQ and TA. And Stream-T1 gets second score in MQ.
+          </p>
+          <div class="table-wrap">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="5">VBench Long&uarr;</th>
+                  <th colspan="3">VideoAlign&uarr;</th>
+                </tr>
+                <tr>
+                  <th>Subject<br />Consistency</th>
+                  <th>Background<br />Consistency</th>
+                  <th>Motion<br />Smoothness</th>
+                  <th>Imaging<br />Quality</th>
+                  <th>Aesthetic<br />Quality</th>
+                  <th>VQ</th>
+                  <th>MQ</th>
+                  <th>TA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><small>CausVid</small></td><td>97.91</td><td>96.74</td><td>98.15</td><td>66.32</td><td>59.71</td><td>-0.144</td><td><strong>0.328</strong></td><td>0.501</td></tr>
+                <tr><td><small>Self-forcing</small></td><td>97.18</td><td>96.37</td><td>98.35</td><td>68.35</td><td>59.19</td><td>-0.461</td><td>-0.216</td><td>0.656</td></tr>
+                <tr><td><small>LongLive</small></td><td>97.90</td><td>96.82</td><td>98.78</td><td>68.99</td><td>61.56</td><td>-0.169</td><td>-0.002</td><td>1.073</td></tr>
+                <tr class="ours-row"><td><strong><em>Stream-T1 (on LongLive)</em></strong></td><td><strong>98.43</strong></td><td><strong>97.18</strong></td><td><strong>99.03</strong></td><td><strong>69.10</strong></td><td><strong>62.11</strong></td><td><strong>-0.073</strong></td><td>0.226</td><td><strong>1.170</strong></td></tr>
+                <tr class="delta-row"><td><small>Relative gain</small></td><td>Δ0.54%</td><td>Δ0.37%</td><td>Δ0.25%</td><td>Δ0.16%</td><td>Δ0.89%</td><td>Δ56.8%</td><td>Δ11400%</td><td>Δ9%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="img/main_results.png" alt="Per-metric quality versus video length" loading="lazy" />
+          <figcaption>
+            <strong>Figure 3. Qualitative comparisons of Stream-T1 with Causvid, Self-Forcing, and LongLive. </strong> 
+            Stream-T1 significantly elevates the temporal consistency and frame-level visual fidelity of the generated videos.
+          </figcaption>
+        </figure>
       </div>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+    <section class="section section-light" id="ablation">
+      <div class="container reveal">
+        <p class="section-eyebrow">Ablation</p>
+        <h2 class="section-title">Each component contributes</h2>
+        <p class="section-copy">
+          To thoroughly validate the individual contributions of our proposed components, 
+          we conduct ablation studies on the 30s video. Both quantitative metrics and extensive 
+          qualitative visual comparisons consistently demonstrate the necessity and efficacy of our designed modules.
+        </p>
 
-    <!-- End of Statcounter Code -->
+        <div class="result-block">
+          <div class="table-wrap">
+            <table class="result-table ablation-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Method</th>
+                  <th colspan="5">VBench Long&uarr;</th>
+                  <th colspan="3">VideoAlign&uarr;</th>
+                </tr>
+                <tr>
+                  <th>Subject<br />Consistency</th>
+                  <th>Background<br />Consistency</th>
+                  <th>Motion<br />Smoothness</th>
+                  <th>Imaging<br />Quality</th>
+                  <th>Aesthetic<br />Quality</th>
+                  <th>VQ</th>
+                  <th>MQ</th>
+                  <th>TA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><small>w/o Stream‑Scaled Memory Sinking</small></td>
+                  <td>98.30</td>
+                  <td>97.04</td>
+                  <td>98.92</td>
+                  <td><strong>69.51</strong></td>
+                  <td>61.90</td>
+                  <td>-0.083</td>
+                  <td>0.188</td>
+                  <td>1.146</td>
+                </tr>
+                <tr>
+                  <td><small>w/o Stream‑Scaled Noise Propagation</small></td>
+                  <td>98.35</td>
+                  <td>97.14</td>
+                  <td>98.98</td>
+                  <td>69.07</td>
+                  <td>61.99</td>
+                  <td>-0.094</td>
+                  <td>0.176</td>
+                  <td>1.164</td>
+                </tr>
+                <tr>
+                  <td><small>w/o Stream‑Scaled Reward Pruning</small></td>
+                  <td>98.04</td>
+                  <td>96.88</td>
+                  <td>98.87</td>
+                  <td>69.17</td>
+                  <td>61.22</td>
+                  <td>-0.173</td>
+                  <td>0.014</td>
+                  <td>1.035</td>
+                </tr>
+                <tr class="ours-row">
+                  <td><strong><em>Ours</em></strong></td>
+                  <td><strong>98.43</strong></td>
+                  <td><strong>97.18</strong></td>
+                  <td><strong>99.03</strong></td>
+                  <td>69.10</td>
+                  <td><strong>62.11</strong></td>
+                  <td><strong>-0.073</strong></td>
+                  <td><strong>0.226</strong></td>
+                  <td><strong>1.170</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <figure class="figure-panel">
+          <img src="img/ablation_results.png" alt="Per-metric quality versus video length" loading="lazy" />
+          <figcaption>
+            <strong>Figure 4. Qualitative ablations studies on each component. </strong> 
+            Omitting the Stream-Scaled Memory Sinking degrades background stability. Removing the Stream-Scaled Noise Propagation introduces local structural artifacts (e.g., on the subject's tail). Eliminating the Stream-Scaled Reward Pruning leads to distinct semantic misalignment and deteriorated aesthetic quality.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
+    <section class="section" id="citation">
+      <div class="container narrow reveal">
+        <p class="section-eyebrow">BibTeX</p>
+        <h2 class="section-title">Cite Stream-T1</h2>
+        <pre id="bibtex-code"><code>
+@misc{tu2026streamt1testtimescalingstreaming,
+      title={Stream-T1: Test-Time Scaling for Streaming Video Generation}, 
+      author={Yijing Tu and Shaojin Wu and Mengqi Huang and Wenchuan Wang and Yuxin Wang and Chunxiao Liu and Zhendong Mao},
+      year={2026},
+      eprint={2605.04461},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.04461}, 
+}
+</code></pre>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          Stream-T1
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/FrameX-AI/Stream-T1" target="_blank" rel="noopener">Code</a>
+          <a href="mailto:huangmq@ustc.edu.cn">Contact</a>
+        </div>
+        <div class="footer-meta">&copy; 2026 Stream-T1.</div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
   </body>
-  </html>
+</html>
